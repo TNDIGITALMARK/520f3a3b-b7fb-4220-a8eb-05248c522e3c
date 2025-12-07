@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
   // Simple image configuration
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
   },
 
   // Basic performance settings

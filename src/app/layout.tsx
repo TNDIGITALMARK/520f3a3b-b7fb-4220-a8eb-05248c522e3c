@@ -4,9 +4,12 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { QueryProvider } from "@/components/query-provider";
 import { ZyloProvider } from "@/lib/zylo/provider";
+import { CartProvider } from "@/lib/context/cart-context";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
 
 // Elegant serif font for headings
 const playfair = Playfair_Display({
@@ -22,8 +25,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Sterling Oaks Golf Club | Championship Golf Experience",
-  description: "Experience championship golf on three award-winning courses designed by Robert Trent Jones II. Premium memberships, events, and world-class amenities.",
+  title: "FestiveGifts | Custom Cakes, Gifts & Party Supplies",
+  description: "One-stop shop for celebration essentials. Custom cakes, gift items, and party supplies for birthdays, weddings, corporate events, and all occasions.",
 };
 
 export default function RootLayout({
@@ -47,11 +50,19 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <TooltipProvider>
-                {children}
-                <Toaster />
-                <Sonner />
-              </TooltipProvider>
+              <CartProvider>
+                <TooltipProvider>
+                  <div className="flex min-h-screen flex-col">
+                    <Header />
+                    <main className="flex-1">
+                      {children}
+                    </main>
+                    <Footer />
+                  </div>
+                  <Toaster />
+                  <Sonner />
+                </TooltipProvider>
+              </CartProvider>
             </ThemeProvider>
           </ZyloProvider>
         </QueryProvider>
